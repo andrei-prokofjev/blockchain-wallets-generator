@@ -11,8 +11,8 @@ then
  exit 1;
 fi
 
-#ROOT=${PWD}
-ROOT=~
+ROOT=${PWD}
+#ROOT=~
 DIR=${ROOT}/tron-wallets/${WALLET}
 
 if [[ -d ${DIR} ]]

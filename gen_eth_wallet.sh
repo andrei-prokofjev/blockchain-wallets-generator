@@ -14,6 +14,11 @@ then
  exit 1;
 fi
 
+if [[ ! -d "~/eth-wallets" ]]
+then
+ mkdir ~/eth-wallets
+fi
+
 echo "Generate password for wallet"
 pwgen -s 13 7 > ~/eth-wallets/${1}
 

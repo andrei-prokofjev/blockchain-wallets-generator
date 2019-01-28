@@ -34,14 +34,14 @@ pwgen -s 13 7 > ${DIR}/${WALLET}-pass
 openssl ecparam -name secp256k1 -genkey -noout | openssl ec -text -noout > ${DIR}/${WALLET}-key
 
 PRIVATEKEY=$( cat ${DIR}/${WALLET}-key | grep priv -A 3 | tail -n +2 | tr -d '\n[:space:]:' )
-#echo "private key: "${PRIVATEKEY}
+echo "private key: "${PRIVATEKEY}
 
 PUBLICKEY=$( cat ${DIR}/${WALLET}-key | grep pub -A 5 | tail -n +2 | tr -d '\n[:space:]:' | sed 's/^04//' )
-#echo "public key: 04"${PUBLICKEY}
+echo "public key: 04"${PUBLICKEY}
 
 #echo "Hash the public key using sha3-256 function and extract the last 20 bytes of the result."
 KECCAK256=$( echo -n ${PUBLICKEY} | keccak-256sum -x -l | tr -d ' -' )
-#echo "sha3: "${KECCAK256}
+echo "sha3: "${KECCAK256}
 
 #echo "Add 41 to the beginning of the byte array. Length of the initial address should be 21 bytes."
 ADDRESS="41$(echo -n ${KECCAK256} | cut -c25-64 )"
